@@ -1,2 +1,2 @@
 # sample-html-code
-This is commit 5
+This is commit 6
