@@ -1,0 +1,19 @@
+{
+  "name": "sample-html-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vishalsaugat/sample-html.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vishalsaugat/sample-html/issues"
+  },
+  "homepage": "https://github.com/vishalsaugat/sample-html#readme"
+}
