@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/vishalsaugat/sample-html/issues"
   },
-  "homepage": "https://github.com/vishalsaugat/sample-html#readme"
+  "homepage": "https://github.com/vishalsaugat/sample-html#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
