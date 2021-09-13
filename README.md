@@ -1,2 +1,2 @@
 # sample-html-code
-This is commit 95
+This is commit 96
