@@ -7,7 +7,8 @@ on:
       - prod
 
 jobs:
-  build:
+  on-merge:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-22.04
     permissions:
       contents: write
@@ -31,18 +32,5 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: ${{ steps.bumptag.outputs.tag }}
+        name: "Released ${{ steps.bumptag.outputs.tag }}"
         generate_release_notes: true
-
-  approved:
-    if: github.event.review.state == 'approved'
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "This PR was approved"
-
-  merged:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "This PR was approved"
-
-      
