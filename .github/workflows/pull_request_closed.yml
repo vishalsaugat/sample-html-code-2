@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - main
+      - prod
 
 jobs:
   build:
@@ -21,6 +21,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: false
+        RELEASE_BRANCHES: prod
+        DEFAULT_BRANCH: prod
 
   approved:
     if: github.event.review.state == 'approved'
