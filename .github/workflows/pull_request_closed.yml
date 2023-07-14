@@ -1,5 +1,5 @@
 name: PR Closed
-run-name: ${{ github.actor }} is merging to ${{ github.repository }} - ${{ github.ref }}
+run-name: ${{ github.actor }} released to ${{ github.ref }}
 on:
   pull_request:
     types: [closed]
@@ -8,6 +8,7 @@ on:
 
 jobs:
   on-merge:
+    name: On Pull request merge to ${{ github.ref }}
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-22.04
     permissions:
