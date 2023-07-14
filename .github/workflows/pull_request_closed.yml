@@ -36,9 +36,20 @@ jobs:
           name: 'Released ${{ steps.bumptag.outputs.part }} ${{ steps.bumptag.outputs.tag }}'
           generate_release_notes: true
 
+      - name: Check API_TOKEN and API_URL
+        id: check_secrets
+        run: |
+          echo "::set-output name=api_token_set::${{ secrets.API_TOKEN != '' }}"
+          echo "::set-output name=api_url_set::${{ secrets.API_URL != '' }}"
+
       - name: Post data to API
+        if: steps.check_secrets.outputs.api_token_set == 'true' && steps.check_secrets.outputs.api_url_set == 'true'
         run: |
           curl -X POST ${{ secrets.API_URL }} \
           -H "Content-Type: application/json" \
           -H "Authorization: Bearer ${{ secrets.API_TOKEN }}" \
           -d '{"tag":"${{ steps.bumptag.outputs.tag }}","commit":"${{ github.event.pull_request.merge_commit_sha }}","repository":"${{ github.repository }}"}'
+
+      - name: Echo message if API_TOKEN or API_URL not set
+        if: steps.check_secrets.outputs.api_token_set == 'false' || steps.check_secrets.outputs.api_url_set == 'false'
+        run: echo "API_TOKEN or API_URL is not set"
