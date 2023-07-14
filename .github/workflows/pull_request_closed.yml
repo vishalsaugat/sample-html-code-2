@@ -1,0 +1,24 @@
+name: PR Closed
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Run actions if PR is merged
+      run: |
+        if [ "${{ github.event.pull_request.merged }}" = "true" ] ; then
+          echo "PR was merged! Run your tasks here."
+          # Your tasks here
+        else
+          echo "PR was not merged or was not targeted to the 'main' branch. Skipping tasks."
+        fi
