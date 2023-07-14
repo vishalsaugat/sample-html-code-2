@@ -41,4 +41,4 @@ jobs:
           curl -X POST ${{ secrets.API_URL }} \
           -H "Content-Type: application/json" \
           -H "Authorization: Bearer ${{ secrets.API_TOKEN }}" \
-          -d '{"tag":"${{ steps.bumptag.outputs.tag }}","branch":"${{ github.ref }}","repository":"${{ github.repository }}"}'
+          -d '{"tag":"${{ steps.bumptag.outputs.tag }}","commit":"${{ github.event.pull_request.merge_commit_sha }}","repository":"${{ github.repository }}"}'
