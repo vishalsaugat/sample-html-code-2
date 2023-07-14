@@ -39,8 +39,8 @@ jobs:
       - name: Check API_TOKEN and API_URL
         id: check_secrets
         run: |
-          echo "::set-output name=api_token_set::${{ secrets.API_TOKEN != '' }}"
-          echo "::set-output name=api_url_set::${{ secrets.API_URL != '' }}"
+          run: echo "api_token_set=${{ secrets.API_TOKEN != '' }}" >> $GITHUB_OUTPUT
+          run: echo "api_url_set=${{ secrets.API_URL != '' }}" >> $GITHUB_OUTPUT
 
       - name: Post data to API
         if: steps.check_secrets.outputs.api_token_set == 'true' && steps.check_secrets.outputs.api_url_set == 'true'
