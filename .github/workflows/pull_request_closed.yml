@@ -31,6 +31,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: ${{ steps.bumptag.outputs.tag }}
+        generate_release_notes: true
 
   approved:
     if: github.event.review.state == 'approved'
