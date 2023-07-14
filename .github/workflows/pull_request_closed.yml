@@ -1,5 +1,5 @@
 name: PR Closed
-run-name: ${{ github.actor }} is merging to ${{ github.repository }} on branch ${{ github.ref }}
+run-name: ${{ github.actor }} is merging to ${{ github.repository }} - ${{ github.ref }}
 on:
   pull_request:
     types: [closed]
