@@ -12,17 +12,23 @@ jobs:
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
       with:
         fetch-depth: '0'
 
-    - name: Bump version and push tag
+    - name: BumpTag
       uses: anothrNick/github-tag-action@1.67.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: false
         RELEASE_BRANCHES: prod
         DEFAULT_BRANCH: prod
+        
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
   approved:
     if: github.event.review.state == 'approved'
@@ -35,3 +41,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "This PR was approved"
+
+      
